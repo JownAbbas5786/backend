@@ -9,7 +9,13 @@ const { v4: uuidv4 } = require('uuid');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors());
+// ✅ Allow Netlify frontend to access
+app.use(cors({
+  origin: "*", // Or replace * with your Netlify URL for security
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type"],
+}));
+
 app.use(express.json());
 
 const uploadsDir = path.join(__dirname, 'uploads');
@@ -82,3 +88,4 @@ app.post('/api/blogs', upload.single('cover'), (req, res) => {
 app.listen(PORT, () => {
   console.log(`API listening on port ${PORT}`);
 });
+
