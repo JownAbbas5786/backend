@@ -9,7 +9,7 @@ const { v4: uuidv4 } = require('uuid');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors({ origin: 'https://munawar-abbas-frontend.netlify.app/' }));
+app.use(cors());
 app.use(express.json());
 
 const uploadsDir = path.join(__dirname, 'uploads');
